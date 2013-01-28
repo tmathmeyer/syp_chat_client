@@ -6,6 +6,12 @@
   <property name="build.dir" location="build" />
   <property name="dist.dir" location="dist" />
 
+
+
+  <path id="bukkit.class.path">
+    <pathelement location="/home/pi/Chat_Source/dist/Server.jar" />
+    <pathelement location="${build.dir}" />
+  </path>
   <!-- Deletes the existing build, docs and dist directory-->
   <target name="clean">
     <delete dir="${build.dir}" />
@@ -21,6 +27,7 @@
   <!-- Compiles the java code (including the usage of library for JUnit -->
   <target name="compile" depends="clean, makedir">
     <javac srcdir="${src.dir}" destdir="${build.dir}" encoding="iso-8859-1">
+      <classpath refid="api.class.path" />
     </javac>
 
   </target>
