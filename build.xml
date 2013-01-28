@@ -14,7 +14,7 @@
   </path>
 
   <path id="api2.class.path">
-    <pathelement location="/home/pi/Chat_Source/dist/Server.jar" />
+    <pathelement location="/home/pi/Build/API.jar" />
     <pathelement location="${build.dir}" />
   </path>
 
