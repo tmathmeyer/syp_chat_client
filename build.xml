@@ -8,7 +8,7 @@
 
 
 
-  <path id="bukkit.class.path">
+  <path id="api.class.path">
     <pathelement location="/home/pi/Chat_Source/dist/Server.jar" />
     <pathelement location="${build.dir}" />
   </path>
