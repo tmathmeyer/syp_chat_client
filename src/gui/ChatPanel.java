@@ -242,7 +242,7 @@ public class ChatPanel extends JPanel implements Client, MouseListener, Runnable
 	
 	public void register(String username, String password) throws Exception {
 		this.username = username;
-		writer.writeByte(0x20);
+		writer.writeByte(0x21);
 		writer.writeShort(username.length());
 		writer.writeShort(password.length());
 		writer.writeChars(username);
@@ -254,6 +254,7 @@ public class ChatPanel extends JPanel implements Client, MouseListener, Runnable
 
 	@Override
 	public void processPacket(Packet p) throws Exception {
+		System.out.println(p.getPacketID());
 		if (p instanceof ControlPacket)this.authenticate(p);
 		else this.mainPanel.processPacket(p);
 	}

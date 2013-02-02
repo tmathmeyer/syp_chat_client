@@ -19,6 +19,7 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
+import protocol.CommandPacket;
 import protocol.MessageGroupListPacket;
 import protocol.MessagePacket;
 import protocol.Packet;
@@ -88,7 +89,10 @@ public class Chat extends MainPanel implements ActionListener{
 			String mess = messageInput.getText();
 			messageInput.setText("");
 			try {
-				this.cp.sendMessage(mess);
+				if (mess.charAt(0) == '/')
+					new CommandPacket(mess.substring(1).split(" ")[0], mess.contains(" ")?mess.substring(mess.indexOf(" ")):"", (byte) 0x00);
+				else
+					this.cp.sendMessage(mess);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
