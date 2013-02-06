@@ -89,8 +89,10 @@ public class Chat extends MainPanel implements ActionListener{
 			String mess = messageInput.getText();
 			messageInput.setText("");
 			try {
-				if (mess.charAt(0) == '/')
-					new CommandPacket(mess.substring(1).split(" ")[0], mess.contains(" ")?mess.substring(mess.indexOf(" ")):"", (byte) 0x00);
+				if (mess.charAt(0) == '/'){
+					System.out.println("LOL");
+					this.cp.sendPacket(new CommandPacket(mess.substring(1).split(" ")[0], mess.contains(" ")?mess.substring(mess.indexOf(" ")):"", (byte) 0x00));
+				}
 				else
 					this.cp.sendMessage(mess);
 			} catch (Exception e) {
@@ -137,7 +139,14 @@ public class Chat extends MainPanel implements ActionListener{
 		}
 		
 		if (p instanceof MessageGroupListPacket){
+			MessageGroupListPacket mglp = (MessageGroupListPacket) p;
+			byte[] groups = mglp.getGroups();
+			String[] groupNames = mglp.getGroupNames();
 			
+			for(int i = 0; i < groups.length; i++){
+				this.or.addGroup(groups[i], groupNames[i]);
+				System.out.println(groupNames[i]);
+			}
 		}
 		
 	}

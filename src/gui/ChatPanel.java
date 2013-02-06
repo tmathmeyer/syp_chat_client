@@ -326,4 +326,15 @@ public class ChatPanel extends JPanel implements Client, MouseListener, Runnable
 	}
 	
 	
+	public void sendPacket(Packet p) throws IOException{
+		p.write(this.getByteOutputStream());
+	}
+
+
+	@Override
+	public void print(byte b) {
+		//System.out.println(b);
+	}
+	
+	
 }

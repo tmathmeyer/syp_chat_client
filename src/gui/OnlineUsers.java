@@ -39,6 +39,7 @@ public class OnlineUsers {
 					sd.insertString(sd.getLength(), name, s);
 				}
 			}
+			else System.out.println("    empty");
 		}
 		
 		
