@@ -11,11 +11,12 @@ import java.util.Calendar;
 
 import javax.swing.JPanel;
 
-import protocol.ControlPacket;
-import protocol.Packet;
+import edu.wpi.tmathmeyer.chat.protocol.ControlPacket;
+import edu.wpi.tmathmeyer.chat.protocol.MessagePacket;
+import edu.wpi.tmathmeyer.chat.protocol.Packet;
 
-import client.Client;
-import client.Reciever;
+import edu.wpi.tmathmeyer.chat.client.Client;
+import edu.wpi.tmathmeyer.chat.client.Reciever;
 
 @SuppressWarnings("serial")
 public class ChatPanel extends JPanel implements Client, MouseListener, Runnable{
@@ -34,7 +35,8 @@ public class ChatPanel extends JPanel implements Client, MouseListener, Runnable
 	DataOutputStream writer;
 	
 	String username;
-	String hostname = "130.215.229.196";
+	//String hostname = "tmathmeyer.wpi.edu";//"localhost";//"130.215.229.196";
+	String hostname = "localhost";
 	
 	int port = 25566;
 	
@@ -101,7 +103,6 @@ public class ChatPanel extends JPanel implements Client, MouseListener, Runnable
 			this.writer = new DataOutputStream(s.getOutputStream());
 			new Thread(this).start();
 			this.startReciever(new Reciever(this.getSocket(), this));
-			System.out.println("connected to server");
 		}
 		catch(Exception e){
 			this.showErrorPanel("Error: bad host 002");
@@ -254,7 +255,6 @@ public class ChatPanel extends JPanel implements Client, MouseListener, Runnable
 
 	@Override
 	public void processPacket(Packet p) throws Exception {
-		System.out.println(p.getPacketID());
 		if (p instanceof ControlPacket)this.authenticate(p);
 		else this.mainPanel.processPacket(p);
 	}
@@ -263,24 +263,7 @@ public class ChatPanel extends JPanel implements Client, MouseListener, Runnable
 
 	@Override
 	public void sendMessage(String message) throws Exception {
-		Calendar c = Calendar.getInstance();
-		short s = (short) c.get(Calendar.SECOND);
-		short m = (short) c.get(Calendar.MINUTE);
-		short h = (short) c.get(Calendar.HOUR);
-		
-		
-		writer.writeByte(0x01);
-		writer.writeByte(0x00);
-		writer.writeShort(h);
-		writer.writeShort(m);
-		writer.writeShort(s);
-		writer.writeShort(message.length());
-		writer.flush();
-		writer.writeChars(message);
-		writer.flush();
-		writer.writeShort(username.length());
-		writer.writeChars(username);
-		writer.flush();
+		new MessagePacket(message, this.username).write(writer);
 	}
 
 

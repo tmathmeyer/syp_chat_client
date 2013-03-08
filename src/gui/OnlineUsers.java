@@ -13,7 +13,7 @@ public class OnlineUsers {
 	
 	
 	public OnlineUsers(){
-		this.rooms.put((byte) 0x00, new OnlineRoom("home"));
+		
 	}
 	
 	public void addGroup(byte b, String name){
@@ -25,6 +25,7 @@ public class OnlineUsers {
 		if (this.rooms.get(b) == null) return;
 		OnlineRoom or = this.rooms.get(b);
 		or.setUsers(users);
+		this.rooms.put(b, or);
 	}
 	
 	public void writeUsers(Style s, StyledDocument sd) throws BadLocationException{
@@ -38,8 +39,8 @@ public class OnlineUsers {
 					String name = "     "+user+"\n";
 					sd.insertString(sd.getLength(), name, s);
 				}
+				or.setUsers(null);
 			}
-			else System.out.println("    empty");
 		}
 		
 		

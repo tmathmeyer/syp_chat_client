@@ -1,8 +1,6 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,8 +8,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
@@ -19,11 +15,11 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
-import protocol.CommandPacket;
-import protocol.MessageGroupListPacket;
-import protocol.MessagePacket;
-import protocol.Packet;
-import protocol.UsersPacket;
+import edu.wpi.tmathmeyer.chat.protocol.CommandPacket;
+import edu.wpi.tmathmeyer.chat.protocol.MessageGroupListPacket;
+import edu.wpi.tmathmeyer.chat.protocol.MessagePacket;
+import edu.wpi.tmathmeyer.chat.protocol.Packet;
+import edu.wpi.tmathmeyer.chat.protocol.UsersPacket;
 
 public class Chat extends MainPanel implements ActionListener{
 	
@@ -110,17 +106,18 @@ public class Chat extends MainPanel implements ActionListener{
 	public void processPacket(Packet p){
 		if (p instanceof MessagePacket){
 			MessagePacket mp = (MessagePacket) p;
-			
+			Color msgColr = new Color(Integer.parseInt(mp.getMessageHex(), 16)); 
+			Color usrColr = new Color(Integer.parseInt(mp.getUserHex(), 16)); 
 			try{
 				StyleConstants.setForeground(style, Color.red.darker().darker());
 				String print = "["+mp.getHour()+":"+mp.getMinute()+":"+mp.getSecond()+"]";
 				this.doc.insertString(this.doc.getLength(), print, style);
 				
-				StyleConstants.setForeground(style, Color.blue.darker().darker());
+				StyleConstants.setForeground(style, usrColr);
 				print = "<"+mp.getUsername()+">  ";
 				this.doc.insertString(this.doc.getLength(), print, style);
 				
-				StyleConstants.setForeground(style, Color.black);
+				StyleConstants.setForeground(style, msgColr);
 				print = mp.getMessage()+"\n";
 				this.doc.insertString(this.doc.getLength(), print, style);
 			} catch(Exception e) {
@@ -145,7 +142,6 @@ public class Chat extends MainPanel implements ActionListener{
 			
 			for(int i = 0; i < groups.length; i++){
 				this.or.addGroup(groups[i], groupNames[i]);
-				System.out.println(groupNames[i]);
 			}
 		}
 		
