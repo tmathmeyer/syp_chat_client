@@ -8,7 +8,7 @@
       <fileset dir="\home\pi\Synchronous-Network-Protocol\dist\" includes="**/*.jar" />
   </path>
   <path id="client.api.class.path">
-      <fileset dir="\home\pi\chat_protocol\dist\" includes="**/*.jar" />
+      <fileset dir="\home\pi\Chat_Source\dist\" includes="**/*.jar" />
   </path>
   <path id="swing.api.class.path">
       <fileset dir="\home\pi\Build" includes="**/*.jar" />
