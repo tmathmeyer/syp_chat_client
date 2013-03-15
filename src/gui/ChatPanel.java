@@ -3,20 +3,20 @@ package gui;
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.Calendar;
 
 import javax.swing.JPanel;
 
-import edu.wpi.tmathmeyer.chat.protocol.ControlPacket;
-import edu.wpi.tmathmeyer.chat.protocol.MessagePacket;
-import edu.wpi.tmathmeyer.chat.protocol.Packet;
-
 import edu.wpi.tmathmeyer.chat.client.Client;
 import edu.wpi.tmathmeyer.chat.client.Reciever;
+import edu.wpi.tmathmeyer.protocol.Packet;
+import edu.wpi.tmathmeyer.protocol.chat.ChatPackets;
+import edu.wpi.tmathmeyer.protocol.chat.ControlPacket;
+import edu.wpi.tmathmeyer.protocol.chat.MessagePacket;
+import edu.wpi.tmathmeyer.protocol.client.DataReciever;
+
 
 @SuppressWarnings("serial")
 public class ChatPanel extends JPanel implements Client, MouseListener, Runnable{
@@ -102,7 +102,7 @@ public class ChatPanel extends JPanel implements Client, MouseListener, Runnable
 			this.s = new Socket(ip, port);
 			this.writer = new DataOutputStream(s.getOutputStream());
 			new Thread(this).start();
-			this.startReciever(new Reciever(this.getSocket(), this));
+			this.startReciever(new Reciever(this.getSocket(), this, ChatPackets.pkts));
 		}
 		catch(Exception e){
 			this.showErrorPanel("Error: bad host 002");
@@ -267,13 +267,6 @@ public class ChatPanel extends JPanel implements Client, MouseListener, Runnable
 	}
 
 
-
-	@Override
-	public void startReciever(Reciever r) {
-		new Thread(r).start();
-	}
-
-
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		// TODO Auto-generated method stub
@@ -315,8 +308,15 @@ public class ChatPanel extends JPanel implements Client, MouseListener, Runnable
 
 
 	@Override
-	public void print(byte b) {
-		//System.out.println(b);
+	public void print(Object arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void startReciever(DataReciever r) {
+		new Thread(r).start();
 	}
 	
 	

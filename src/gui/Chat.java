@@ -15,11 +15,13 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
-import edu.wpi.tmathmeyer.chat.protocol.CommandPacket;
-import edu.wpi.tmathmeyer.chat.protocol.MessageGroupListPacket;
-import edu.wpi.tmathmeyer.chat.protocol.MessagePacket;
-import edu.wpi.tmathmeyer.chat.protocol.Packet;
-import edu.wpi.tmathmeyer.chat.protocol.UsersPacket;
+import edu.wpi.tmathmeyer.protocol.Packet;
+import edu.wpi.tmathmeyer.protocol.chat.CommandPacket;
+import edu.wpi.tmathmeyer.protocol.chat.MessageGroupListPacket;
+import edu.wpi.tmathmeyer.protocol.chat.MessagePacket;
+import edu.wpi.tmathmeyer.protocol.chat.UsersPacket;
+
+
 
 public class Chat extends MainPanel implements ActionListener{
 	
