@@ -1,20 +1,14 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
-import swing.JSearchTextField;
-import swing.JSearchPasswordField;
+import edu.wpi.tmathmeyer.swing.JSearchTextField;
+import edu.wpi.tmathmeyer.swing.JSearchPasswordField;
 
 public class LoginPanel extends OptionsPanel implements ActionListener{
 	
