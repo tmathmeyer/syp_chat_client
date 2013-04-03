@@ -8,6 +8,7 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 
+@SuppressWarnings("serial")
 public class ColorPane extends JTextPane {
 
 	public void appendNaive(Color c, String s) {

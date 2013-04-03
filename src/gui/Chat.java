@@ -23,6 +23,7 @@ import edu.wpi.tmathmeyer.protocol.chat.UsersPacket;
 
 
 
+@SuppressWarnings("serial")
 public class Chat extends MainPanel implements ActionListener{
 	
 	

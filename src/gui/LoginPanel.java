@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import edu.wpi.tmathmeyer.swing.JSearchTextField;
 import edu.wpi.tmathmeyer.swing.JSearchPasswordField;
 
+@SuppressWarnings("serial")
 public class LoginPanel extends OptionsPanel implements ActionListener{
 	
 	JSearchTextField username = new JSearchTextField("username");
@@ -62,6 +63,7 @@ public class LoginPanel extends OptionsPanel implements ActionListener{
 	}
 
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(this.login)){

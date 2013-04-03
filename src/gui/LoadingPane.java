@@ -2,11 +2,9 @@ package gui;
 
 import gui.loading.Center;
 
-import javax.swing.*;
-
 import java.awt.*;
-import java.util.ArrayList;
 
+@SuppressWarnings("serial")
 public class LoadingPane extends MainPanel implements Runnable{
 	public boolean loading = false;
 	Center o;
