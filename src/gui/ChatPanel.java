@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.net.Socket;
 
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+
+import de.javasoft.plaf.synthetica.SyntheticaBlueLightLookAndFeel;
 
 import edu.wpi.tmathmeyer.chat.client.Client;
 import edu.wpi.tmathmeyer.chat.client.Reciever;
@@ -49,6 +52,15 @@ public class ChatPanel extends JPanel implements Client, MouseListener, Runnable
 		this.add(errorPanel);
 		this.add(optionPanel);
 		this.addMainPanel(this.mainPanel);
+		
+		try 
+        {
+          UIManager.setLookAndFeel(new SyntheticaBlueLightLookAndFeel());
+        } 
+        catch (Exception e) 
+        {
+          e.printStackTrace();
+        }
 	}
 	
 	
