@@ -7,8 +7,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import edu.wpi.tmathmeyer.swing.JSearchTextField;
-import edu.wpi.tmathmeyer.swing.JSearchPasswordField;
+import edu.wpi.tmathmeyer.swing.field.JSearchPasswordField;
+import edu.wpi.tmathmeyer.swing.field.JSearchTextField;
+
 
 @SuppressWarnings("serial")
 public class LoginPanel extends OptionsPanel implements ActionListener{
