@@ -19,7 +19,7 @@
       <fileset dir="D:\builds\java\syp" includes="**/*.jar" />
   </path>
   <path id="client.api.class.path.windows">
-      <fileset dir="D:\builds\java\syp-chat\server" includes="**/*.jar" />
+      <fileset dir="D:\builds\java\syp-server" includes="**/*.jar" />
   </path>
   <path id="swing.api.class.path.windows">
       <fileset dir="D:\builds\java\lib" includes="**/*.jar" />
@@ -29,7 +29,7 @@
       <fileset dir="/home/pi/Builds/auto/syp" includes="**/*.jar" />
   </path>
   <path id="client.api.class.path.linux">
-      <fileset dir="/home/pi/Builds/auto/syp-chat/server" includes="**/*.jar" />
+      <fileset dir="/home/pi/Builds/auto/syp-server" includes="**/*.jar" />
   </path>
   <path id="swing.api.class.path.linux">
       <fileset dir="/home/pi/Builds/auto/lib" includes="**/*.jar" />
